@@ -1,0 +1,6 @@
+<div class="container-fluid">
+    <h3>{{name$ | async}}</h3><br>&nbsp;
+    <button class="btn btn-sm btn-success" (click)="onChangeNme()">Change Name</button>&nbsp;
+    <input type="text" placeholder="enter value" [(ngModel)]="value"/>&nbsp;
+    <button class="btn btn-sm btn-success" (click)="onAdd()">Add to Counter</button>
+</div>
