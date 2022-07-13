@@ -9,12 +9,12 @@ export const initialState : PostsState = {
         {
             id : '1',
             title : 'Title 1',
-            discription : 'Discription 1'
+            description : 'Description 1'
         },
         {
             id : '2',
             title : 'Title 2',
-            discription : 'Discription 2'
+            description : 'Description 2'
         }
     ]
 }
