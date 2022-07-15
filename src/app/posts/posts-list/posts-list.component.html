@@ -18,7 +18,10 @@
                     <td>{{post.id}}</td>
                     <td>{{post.title}}</td>
                     <td>{{post.description}}</td>
-                    <td><a href="" class="btn btn-sm btn-primary " [routerLink]="['edit', post.id]">Update</a></td>
+                    <td>
+                        <a href="" class="btn btn-sm btn-primary" [routerLink]="['edit', post.id]">Update</a>&nbsp;
+                        <button class="btn btn-sm btn-danger" (click)="onDeletePost(post.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
