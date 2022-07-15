@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/posts.model';
+import { updatePost } from '../state/posts.actions';
 import { getPostById } from '../state/posts.selector';
 
 @Component({
@@ -17,7 +18,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
   postForm !: FormGroup;
   postSunscription !: Subscription;
 
-  constructor(private route : ActivatedRoute, private store : Store) { }
+  constructor(private route : ActivatedRoute, private store : Store, private router : Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( params => {
@@ -40,6 +41,31 @@ export class EditPostComponent implements OnInit, OnDestroy {
     if(this.postSunscription){
       this.postSunscription.unsubscribe();
     }
+  }
+
+  showDescriptionErrors(){
+    const descriptionError = this.postForm.get('description');
+    if( descriptionError?.touched && !descriptionError.valid){
+      if(descriptionError.errors?.['required']){
+        return "Description is required"
+      }
+      else if(descriptionError.errors?.['minlength']){
+        return "Description should be minimum 10 character"
+      }
+    }
+  }
+
+  onUpdatePost(){
+    if(!this.postForm.valid){
+      return;
+    }
+    const post : Post = {
+      id : this.post.id,
+      title : this.postForm.value.title,
+      description : this.postForm.value.description,
+    };
+    this.store.dispatch(updatePost({ post })) 
+    this.router.navigate(['posts'])
   }
 
 }
