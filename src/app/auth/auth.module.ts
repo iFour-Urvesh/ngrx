@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { LoginComponent } from './login/login.component';
 import { AuthEffects } from "./state/auth.effects";
+import { SignupComponent } from './signup/signup.component';
 
 const routes : Routes = [
     {
@@ -14,6 +15,9 @@ const routes : Routes = [
             },
             {
                 path : 'login', component : LoginComponent
+            },
+            {
+                path : 'signup', component : SignupComponent
             }
         ]
     }
@@ -21,7 +25,8 @@ const routes : Routes = [
 
 @NgModule({
     declarations : [
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
     imports : [
         CommonModule,
