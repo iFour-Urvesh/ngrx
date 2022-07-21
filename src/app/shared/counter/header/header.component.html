@@ -19,6 +19,9 @@
             <a class="nav-link" href="#" [routerLink]="['/auth']" *ngIf="!(isAuthenticated | async)">Login</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/auth/signup']" *ngIf="!(isAuthenticated | async)">SignUp</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#" [routerLink]="['/auth']" *ngIf="isAuthenticated | async">Logout</a>
           </li>
         </ul>
