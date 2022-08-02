@@ -9,10 +9,11 @@ import { HeaderComponent } from './shared/counter/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 import { appReducer } from './store/app.state';
 import { AuthEffects } from './auth/state/auth.effects';
+import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AuthEffects } from './auth/state/auth.effects';
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
   ],
-  providers: [],
+  providers: [{provide : HTTP_INTERCEPTORS, useClass : AuthTokenInterceptor, multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
