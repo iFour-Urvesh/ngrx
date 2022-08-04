@@ -21,3 +21,6 @@ export const loginSuccess = createAction(LOGIN_SUCCESS, props<{user : User | nul
 
 export const signupStart = createAction(SIGNUP_START, props<{email : any; password : any}>());
 export const signupSuccess = createAction(SIGNUP_SUCCESS, props<{user : User, redirect : boolean}>());
+
+
+export const dummyAction = createAction('[dummy action]');
